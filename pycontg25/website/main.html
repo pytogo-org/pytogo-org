@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyCon Togo 2025 - La conférence Python du Togo</title>
+    <style>
+        :root {
+            --togo-red: #ce1126;
+            --togo-yellow: #fcd116;
+            --togo-green: #006b3f;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--dark-gray);
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .cloud-layer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60%;
+            
+            background-size: contain;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .flag-stripe {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 12px;
+            z-index: 100;
+        }
+
+        .stripe-red {
+            top: 0;
+            height: 33.33vh;
+            background-color: var(--togo-red);
+        }
+
+        .stripe-yellow {
+            top: 33.33vh;
+            height: 33.33vh;
+            background-color: var(--togo-yellow);
+        }
+
+        .stripe-green {
+            top: 66.66vh;
+            height: 33.34vh;
+            background-color: var(--togo-green);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            margin: 1rem auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--togo-green);
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--togo-red);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--togo-green);
+            color: var(--togo-green);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 107, 63, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--togo-red);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #b00e21;
+            box-shadow: 0 4px 12px rgba(206, 17, 38, 0.3);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 6rem auto 0;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .highlight {
+            color: var(--togo-red);
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--togo-yellow);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #505050;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            background: var(--togo-green);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 107, 63, 0.4);
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 107, 63, 0.5);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .monument {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .monument1 {
+            bottom: 15%;
+            left: 5%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .monument2 {
+            bottom: 20%;
+            right: 10%;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .monument3 {
+            bottom: 10%;
+            left: 40%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .monument4 {
+            bottom: 25%;
+            right: 25%;
+            animation: float 9s ease-in-out infinite;
+        }
+
+        .monument5 {
+            bottom: 30%;
+            left: 20%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .star-decoration {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 40px;
+            height: 40px;
+            background: var(--togo-red);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            opacity: 0.8;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .python-banner {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(transparent, rgba(0, 107, 63, 0.05));
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+      
+        .section {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--togo-green);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--togo-yellow);
+        }
+
+        .programme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            color: var(--togo-red);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--togo-yellow);
+            padding-bottom: 0.5rem;
+        }
+
+        .schedule-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-time {
+            font-weight: bold;
+            color: var(--togo-green);
+            margin-right: 0.5rem;
+        }
+
+        .schedule-title {
+            font-weight: 500;
+        }
+
+        .schedule-speaker {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        .sponsors-section {
+            padding: 4rem 0;
+            background-color: var(--light-gray);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sponsors-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--togo-green);
+            position: relative;
+        }
+
+        .sponsors-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--togo-yellow);
+        }
+
+        .sponsors-slider {
+            display: flex;
+            gap: 50px;
+            animation: scroll 30s linear infinite;
+            width: fit-content;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .sponsor-item {
+            width: 180px;
+            height: 100px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .sponsor-item img {
+            max-width: 100%;
+            max-height: 70px;
+            object-fit: contain;
+        }
+
+        .sponsor-call {
+            background: linear-gradient(135deg, var(--togo-green), #008b50);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            border-radius: 15px;
+            max-width: 1000px;
+            margin: 4rem auto;
+            box-shadow: 0 8px 30px rgba(0, 107, 63, 0.3);
+        }
+
+        .sponsor-call-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sponsor-call-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .sponsor-packages {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sponsor-package {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .sponsor-package:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .package-title {
+            font-size: 1.3rem;
+            color: var(--togo-yellow);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .package-price {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .package-features {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-features li {
+            margin-bottom: 0.5rem;
+            list-style-type: none;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .package-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--togo-yellow);
+        }
+
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .auth-buttons .btn-outline {
+                display: none;
+            }
+
+            .programme-grid {
+                grid-template-columns: 1fr;
+            }
+             .sponsor-packages {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sponsor-package {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--togo-green);
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 60px;
+        }
+
+        .footer-links h4 {
+            color: var(--togo-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--togo-yellow);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--togo-yellow);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flag-stripe stripe-red"></div>
+    <div class="flag-stripe stripe-yellow"></div>
+    <div class="flag-stripe stripe-green"></div>
+
+    <div class="hero-section">
+        <div class="hero-background">
+            <div class="monument monument1">
+                <img src="static/images/python.svg" alt="Monument de l'Indépendance" width="150">
+            </div>
+            <div class="monument monument2">
+                <img src="static/images/python.svg" alt="Cathédrale de Lomé" width="130">
+            </div>
+           
+            <div class="monument monument4">
+                <img src="static/images/python.svg" alt="Colombe de la Paix" width="110">
+            </div>
+            <div class="monument monument5">
+                <img src="static/images/python.svg" alt="Cascade de Kpimé" width="140">
+            </div>
+            <div class="cloud-layer"></div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="static/images/pycontogo.png" alt="PyCon Togo Logo">
+                <span>PyCon Togo</span>
+            </div>
+            <div class="nav-links">
+                <a href="#programme">Programme</a>
+                <a href="#speakers">Speakers</a>
+                <a href="#workshops">Ateliers</a>
+                <a href="#sponsors">Sponsors</a>
+                <a href="#lieu">Lieu</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="auth-buttons">
+                <a href="#inscription" class="btn btn-outline">Se connecter</a>
+                <a href="#inscription" class="btn btn-primary">S'inscrire</a>
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <h1 class="hero-title">La conférence Python au cœur de l'Afrique de l'Ouest<br>Pour développeurs qui <span
+                    class="highlight">innovent</span></h1>
+            <p class="hero-description">
+                Rejoignez plus de 500 développeurs Python au PyCon Togo 2025, l'événement incontournable pour
+                rencontrer, échanger et apprendre avec la communauté Python africaine. Conférences techniques, ateliers
+                pratiques et opportunités de networking dans un cadre exceptionnel à Lomé.
+            </p>
+            <a href="#inscription" class="cta-button">
+                S'inscrire maintenant
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="white" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+
+    <!-- <section id="sponsors" class="sponsors-section">
+        <h2 class="sponsors-title lang-en">Our Sponsors</h2>
+        <div class="sponsors-slider">
+            <div class="sponsor-item">
+                <img src="static/images/parteners/psf-logo.png" alt="Sponsor 1">
+            </div>
+            <div class="sponsor-item">
+                <img src="static/images/parteners/pyghana.png" alt="Sponsor 2">
+            </div>
+            <div class="sponsor-item">
+                <img src="static/images/parteners/hyver.png" alt="Sponsor 3">
+            </div>
+            <div class="sponsor-item">
+                <img src="static/images/parteners/tedx.png" alt="Sponsor 4">
+            </div>
+            <div class="sponsor-item">
+                <img src="static/images/parteners/abc-logo-full.png" alt="Sponsor 5">
+            </div>
+            <div class="sponsor-item">
+                <img src="static/images/parteners/amz_girls.png" alt="Sponsor 5">
+            </div>
+        </div> -->
+    </section>
+
+
+    <section class="sponsor-call">
+
+        <h2 class="sponsor-call-title lang-en">Become a Sponsor</h2>
+
+        <p class="sponsor-call-text lang-en">
+            Support the Python community in Africa and benefit from the visibility of PyCon Togo to promote your
+            products and services. Discover our different sponsorship packages and contact us for more information.
+        </p>
+        <div class="sponsor-packages">
+            <div class="sponsor-package">
+                <h3 class="package-title">Contributor</h3>
+                <p class="package-price">
+                    < $500 </p>
+                        <ul class="package-features">
+                            <li>Logo sur le site web</li>
+                            <li>1 billet d'entrée</li>
+                        </ul>
+            </div>
+            <div class="sponsor-package">
+                <h3 class="package-title">Bronze</h3>
+                <p class="package-price">$500</p>
+                <ul class="package-features">
+                    <li>Logo sur le site web</li>
+                    <li>1 billet d'entrée</li>
+                    <li>Stand d'exposition</li>
+                </ul>
+            </div>
+            <div class="sponsor-package">
+                <h3 class="package-title">Argent</h3>
+                <p class="package-price">$1000</p>
+                <ul class="package-features">
+                    <li>Logo sur le site web</li>
+                    <li>2 billets d'entrée</li>
+                    <li>Stand d'exposition</li>
+                    <li>Discours d'ouverture</li>
+                </ul>
+            </div>
+            <div class="sponsor-package">
+                <h3 class="package-title">Or</h3>
+                <p class="package-price">$2000</p>
+                <ul class="package-features">
+                    <li>Logo sur le site web</li>
+                    <li>3 billets d'entrée</li>
+                    <li>Stand d'exposition</li>
+                    <li>Discours d'ouverture</li>
+                    <li>Atelier sponsorisé</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="programme" class="section">
+        <h2 class="section-title">Programme</h2>
+        <div class="programme-grid">
+
+
+            <div class="day-card">
+                <h3 class="day-title">JLOrem ipsum</h3>
+                <div class="schedule-item">
+                    <div class="schedule-time">09:00 - 10:00</div>
+                    <div class="schedule-title">Keynote: Python et l'IA en Afrique</div>
+                    <div class="schedule-speaker">Lorem ipsum, </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">10:15 - 11:15</div>
+                    <div class="schedule-title">Lightning Talks: Innovations Python</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">11:30 - 12:30</div>
+                    <div class="schedule-title">Workshop: Data Science avec Python</div>
+                    <div class="schedule-speaker">Lorem ipsum,</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:30 - 14:00</div>
+                    <div class="schedule-title">Déjeuner & Networking</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:00 - 17:00</div>
+                    <div class="schedule-title">Sprint de Code: Solutions pour le développement durable</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">17:30 - 19:00</div>
+                    <div class="schedule-title">Soirée networking & cocktail</div>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    <img src="static/images/pycontogo.png" alt="PyCon Togo Logo">
+                </div>
+                <p>PyCon Togo 2025 est la première conférence Python majeure au Togo, réunissant développeurs, étudiants
+                    et professionnels pour célébrer Python et son écosystème.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a href="#programme">Programme</a></li>
+                    <li><a href="#speakers">Speakers</a></li>
+                    <li><a href="#sponsors">Sponsors</a></li>
+                    <li><a href="#lieu">Lieu</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li>Email: contact@pycontogo.org</li>
+                    <li>Téléphone: +228 92 55 59 87</li>
+                    <li></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 PyCon Togo. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+           
+            const heroContent = document.querySelector('.hero-content');
+            const monuments = document.querySelectorAll('.monument');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            function animateWithDelay() {
+                monuments.forEach((monument, index) => {
+                    setTimeout(() => {
+                        monument.style.opacity = '1';
+                    }, index * 200);
+                });
+            }
+
+          
+            monuments.forEach(monument => {
+                monument.style.opacity = '0';
+                monument.style.transition = 'opacity 1s ease-in-out';
+            });
+
+           
+            menuToggle.addEventListener('click', function () {
+                navLinks.classList.toggle('show');
+            });
+
+            
+            setTimeout(animateWithDelay, 500);
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+
+</html>
