@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">Join Us for PyCon Togo 2025</h1>
+            <p class="hero-text">We're excited to announce the first-ever Python Conference in Togo! PyCon Togo 2025
+                will
+                bring together developers, enthusiasts, and experts from across Africa and beyond for an unforgettable
+                celebration of Python and its community.</p>
+
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Become a Speaker</a>
+                <a href="#" class="btn btn-outline">Join as Volunteer</a>
+            </div>
+        </div>
+
+        <div class="countdown-container">
+            <h2 class="countdown-title">Event Countdown</h2>
+            <div class="countdown-timer" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">215</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">08</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">45</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">30</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+
+            <div class="event-details">
+                <p class="event-location">Coming Soon</p>
+                <a href="#program" class="view-schedule">
+                    View Full Schedule
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="partners">
+    <div class="container">
+        <h2 class="section-title">Our Partners / Sponsors</h2>
+        <div class="partners-logos">
+            <div class="partner-logo">
+
+                <img src="../static/images/parteners/psf-logo.png" alt="PSF Logo">
+            </div>
+    </div>
+</section>
+
+<!-- Sponsorship Section -->
+<section class="sponsorship" id="sponsors">
+    <div class="container">
+        <h2 class="section-title">Become a Sponsor</h2>
+        <div class="sponsorship-intro">
+            <p>Support PyCon Togo 2025 and connect with the growing Python community in Africa. We offer various
+                sponsorship
+                packages to give your brand visibility and help you connect with talented developers.</p>
+        </div>
+
+        <div class="tiers-container">
+            <h3 class="tier-title">Sponsorship Tiers</h3>
+            <div class="tiers">
+                <div class="tier">
+                    <h4 class="tier-name">Silver</h4>
+                    <div class="tier-price">$160</div>
+                    <ul class="tier-features">
+                        <li>Logo on website</li>
+                        <li>1 conference pass</li>
+                        <li>Swag in welcome pack</li>
+                    </ul>
+                </div>
+
+                <div class="tier popular">
+                    <span class="popular-tag">POPULAR</span>
+                    <h4 class="tier-name">Gold</h4>
+                    <div class="tier-price">$700 </div>
+                    <ul class="tier-features">
+                        <li>Logo on website and banners</li>
+                        <li>3 conference passes</li>
+                        <li>Swag in welcome pack</li>
+                        <li>5 min presentation slot</li>
+                    </ul>
+                </div>
+
+                <div class="tier">
+                    <h4 class="tier-name">Platinum</h4>
+                    <div class="tier-price">$1500</div>
+                    <ul class="tier-features">
+                        <li>Logo on website, banners, and swag</li>
+                        <li>5 conference passes</li>
+                        <li>Swag in welcome pack</li>
+                        <li>10 min presentation slot</li>
+                        <li>Dedicated booth space</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="sponsor-btn-container">
+            <a href="#" class="btn btn-primary">Become a Sponsor</a>
+        </div>
+    </div>
+</section>
+<!-- Call to Action Section -->
+<section class="cta-section">
+    <div class="container cta-container">
+        <div class="cta-box" style="background-color: #f0f8ff;">
+            <h3 class="cta-title">Call for Volunteers</h3>
+            <p class="cta-text">Be part of the team that makes PyCon Togo 2025 a success! We're looking for enthusiastic
+                volunteers to help with organization, logistics, and more.</p>
+            <ul class="cta-list">
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                    </svg>
+                    <span>Gain valuable experience in event organization</span>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                    </svg>
+                    <span>Network with Python experts and enthusiasts</span>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                    </svg>
+                    <span>Free conference admission and exclusive volunteer swag</span>
+                </li>
+            </ul>
+            <div class="cta-btn">
+                <a href="#" class="btn btn-secondary">Register as Volunteer</a>
+            </div>
+        </div>
+
+        <div class="cta-box" style="background-color: #fffbf0;">
+            <h3 class="cta-title">Call for Speakers</h3>
+            <p class="cta-text">Share your knowledge and experience with the Python community. We welcome talks on all
+                Python-related topics, from beginner to advanced levels.</p>
+
+            <div class="cta-info">
+                <h4 class="cta-info-title">Talk Formats</h4>
+                <p>30-min talks, 45-min deep dives, 10-min lightning talks</p>
+            </div>
+
+            <div class="cta-info">
+                <h4 class="cta-info-title">Important Dates</h4>
+                <p>Submissions open: Soon • Deadline: Soon</p>
+            </div>
+
+            <div class="cta-info">
+                <h4 class="cta-info-title">Speaker Benefits</h4>
+                <p>Free conference pass, speaker dinner, travel assistance available</p>
+            </div>
+
+            <div class="cta-btn">
+                <a href="#" class="btn btn-primary">Submit a Proposal</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="page-content" id="program">
+    <div class="container">
+        <h2 class="section-title">Conference Program</h2>
+
+        <!-- Schedule tabs -->
+        <div class="schedule-tabs">
+            <div class="schedule-tab active" data-day="day1">May 15</div>
+
+        </div>
+
+        <div id="day1" class="schedule-content active">
+            <div class="schedule-item">
+                <div class="schedule-time">08:30 - 09:30</div>
+                <div class="schedule-details">
+                    <h3 class="schedule-title">Registration & Breakfast</h3>
+                    <p class="schedule-description">Start your day with registration and a complimentary breakfast while
+                        networking with other attendees.</p>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="schedule-time">09:30 - 10:15</div>
+                <div class="schedule-details">
+                    <h3 class="schedule-title">Opening Keynote: The Future of Python in Africa</h3>
+                    <div class="schedule-speaker">By Jessica Upani, Python Software Foundation Director</div>
+                    <p class="schedule-description">An inspiring talk about the growing Python ecosystem in Africa and
+                        the
+                        opportunities it presents for developers across the continent.</p>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="schedule-time">10:30 - 11:15</div>
+                <div class="schedule-details">
+                    <h3 class="schedule-title">Web Development with Django Rest Framework</h3>
+                    <div class="schedule-speaker">By Kokou Adzo, Senior Backend Developer</div>
+                    <p class="schedule-description">Learn how to build robust, modern APIs with Django Rest Framework
+                        and
+                        best practices for production deployment.</p>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="schedule-time">11:30 - 12:15</div>
+                <div class="schedule-details">
+                    <h3 class="schedule-title">Data Analysis with Pandas: Practical Examples</h3>
+                    <div class="schedule-speaker">By Marie Attokey, Data Scientist</div>
+                    <p class="schedule-description">A hands-on session with real-world examples of data manipulation,
+                        cleaning, and analysis using Pandas library.</p>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="schedule-time">12:15 - 13:30</div>
+                <div class="schedule-details">
+                    <h3 class="schedule-title">Lunch Break</h3>
+                    <p class="schedule-description">Enjoy a delicious lunch and network with speakers and fellow
+                        attendees.</p>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="schedule-time">13:30 - 14:15</div>
+                <div class="schedule-details">
+                    <h3 class="schedule-title">Machine Learning Made Simple with Scikit-learn</h3>
+                    <div class="schedule-speaker">By David Kouassi, AI Researcher</div>
+                    <p class="schedule-description">An introduction to machine learning concepts and how to implement
+                        them
+                        using Scikit-learn library.</p>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="schedule-time">14:30 - 16:00</div>
+                <div class="schedule-details">
+                    <h3 class="schedule-title">Workshop: Building Your First FastAPI Application</h3>
+                    <div class="schedule-speaker">By Thomas Mensah, Software Engineer</div>
+                    <p class="schedule-description">A hands-on workshop where you'll build a complete API with FastAPI,
+                        from setup to deployment.</p>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="schedule-time">16:15 - 17:00</div>
+                <div class="schedule-details">
+                    <h3 class="schedule-title">Lightning Talks</h3>
+                    <p class="schedule-description">A series of quick, 5-minute talks on various Python topics by
+                        conference attendees.</p>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="schedule-time">17:30 - 19:30</div>
+                <div class="schedule-details">
+                    <h3 class="schedule-title">Welcome Reception</h3>
+                    <p class="schedule-description">Join us for drinks and appetizers as we celebrate the first day of
+                        PyCon Togo.</p>
+                </div>
+            </div>
+        </div>
+
+
+</section>
+{% endblock %}
