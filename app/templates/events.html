@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %} Events
+{% endblock %}
+
+{% block content %}
+
+
+<div class="event-section">
+    <h1 class="section-title">Python Togo Events</h1>
+
+    <div class="event-tabs">
+        <button class="event-tab active" data-tab="all">All Events</button>
+        <button class="event-tab" data-tab="upcoming">Upcoming Events</button>
+        <button class="event-tab" data-tab="ongoing">Ongoing Events</button>
+        <button class="event-tab" data-tab="past">Past Events</button>
+    </div>
+
+    <div id="events-container" class="events-container">
+        <!-- Events will be loaded dynamically here -->
+        <div class="loading">Loading events...</div>
+    </div>
+</div>
+
+<!-- Event Detail Modal -->
+<div id="eventModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+
+        <!-- Event details will be loaded here -->
+        <div id="eventDetailContent">
+            <!-- Event details will be loaded dynamically here -->
+        </div>
+    </div>
+</div>
+
+<!-- Templates for dynamic content -->
+<template id="event-card-template">
+    <div class="event-card">
+        <img src="" alt="" class="event-image">
+        <div class="event-details">
+            <span class="event-category"></span>
+            <h3 class="event-title"></h3>
+            <div class="event-meta">
+                <div class="event-meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span class="event-date"></span>
+                </div>
+                <div class="event-meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span class="event-time"></span>
+                </div>
+                <div class="event-meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="event-location"></span>
+                </div>
+            </div>
+            <p class="event-description"></p>
+            <div class="event-buttons">
+                <a href="#" class="btn btn-primary event-details-btn">View Details</a>
+                <a href="#" class="btn btn-secondary">Register</a>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="event-detail-template">
+    <div class="event-detail-header">
+        <div class="event-header-overlay">
+            <span class="event-category"></span>
+            <h2 class="event-title"></h2>
+            <div class="event-meta">
+                <div class="event-meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path
+                            d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l80 0 0 56-80 0 0-56zm0 104l80 0 0 64-80 0 0-64zm128 0l96 0 0 64-96 0 0-64zm144 0l80 0 0 64-80 0 0-64zm80-48l-80 0 0-56 80 0 0 56zm0 160l0 40c0 8.8-7.2 16-16 16l-64 0 0-56 80 0zm-128 0l0 56-96 0 0-56 96 0zm-144 0l0 56-64 0c-8.8 0-16-7.2-16-16l0-40 80 0zM272 248l-96 0 0-56 96 0 0 56z" />
+                    </svg>
+                    <span class="event-date"></span>
+                </div>
+                <div class="event-meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                            d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                    </svg>
+                    <span class="event-time"></span>
+                </div>
+                <div class="event-meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path
+                            d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                    </svg>
+                    <span class="event-location"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="event-detail-content">
+        <div class="event-time-location">
+            <div class="event-info-group">
+                <h3 class="event-info-title">Date & Time</h3>
+                <p class="event-date"></p>
+                <p class="event-time"></p>
+            </div>
+            <div class="event-info-group">
+                <h3 class="event-info-title">Location</h3>
+                <p class="event-location"></p>
+                <p class="event-address"></p>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="description">Description</div>
+            <div class="tab" data-tab="schedule">Schedule</div>
+            <div class="tab" data-tab="speakers">Speakers</div>
+            <div class="tab" data-tab="register">Register</div>
+        </div>
+
+        <div id="description" class="tab-content active">
+            <h3>About This Event</h3>
+            <div class="event-description-full"></div>
+        </div>
+
+        <div id="schedule" class="tab-content">
+            <h3>Workshop Schedule</h3>
+            <div class="schedule-items-container"></div>
+        </div>
+
+        <div id="speakers" class="tab-content">
+            <h3>Workshop Instructors</h3>
+            <div class="speakers-grid"></div>
+        </div>
+
+        <div id="register" class="tab-content">
+            <h3>Register for this Event</h3>
+
+            <form class="registration-form">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Organization</label>
+                    <input type="text" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Python Experience Level</label>
+                    <select class="form-input">
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">What do you hope to learn?</label>
+                    <textarea class="form-input" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Register Now</button>
+            </form>
+        </div>
+    </div>
+</template>
+
+{% block scripts %}
+<script src="{{ url_for('static', path='JS/events.js') }}"></script>
+
+{% endblock %}
+
+{% endblock %}

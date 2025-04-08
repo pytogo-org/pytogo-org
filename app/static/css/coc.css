@@ -1,0 +1,191 @@
+        :root {
+            --primary-green: #27ae60;
+            --secondary-green: #e8f5e9;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #f5f5f5;
+            --background-white: #ffffff;
+            --accent-yellow: #ffd700;
+        }
+
+        /* Hero Section */
+        .coc-hero {
+            text-align: center;
+            margin-top: 150px;
+            padding: 4rem 1rem;
+            background-color: var(--background-light);
+        }
+
+        .coc-hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .coc-hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-green);
+            margin: 0.5rem auto 0;
+        }
+
+        .content-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--secondary-green);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 1.2rem 0 0.8rem;
+            color: var(--text-dark);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        ul,
+        ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            color: var(--text-light);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background-color: var(--secondary-green);
+            border-left: 4px solid var(--primary-green);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .contact-info {
+            background-color: var(--secondary-green);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .green-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--background-light);
+            padding: 2rem 5%;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 30px;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .footer-nav li {
+            margin: 0 1rem;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            margin: 0 0.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 0.5rem;
+            }
+
+            .coc-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .coc-hero p {
+                font-size: 1rem;
+            }
+        }

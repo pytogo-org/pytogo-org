@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} Login
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/login.css') }}">
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="login-container">
+        <div class="login-header">
+            <img src="{{ url_for('static', path='images/logo.svg') }}" alt="Python Togo Logo">
+            <h1>Admin Login</h1>
+            <p>Enter your credentials to access the admin panel</p>
+        </div>
+
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+                <div class="error-message" id="username-error">Please enter a valid username</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+                <div class="error-message" id="password-error">Please enter your password</div>
+            </div>
+
+            <div class="error-message" id="login-error">Invalid username or password</div>
+
+            <button type="submit" class="login-btn">Log In</button>
+
+            <div class="forgot-password">
+                <a href="#">Forgot password?</a>
+            </div>
+            <div class="form-links">
+                Don't have an account? <a href="{{ url_for('signup')}}">Sign up </a>
+            </div>
+
+            <div class="back-to-site">
+                <a href="{{ url_for('home')}}"><i class="fas fa-arrow-left"></i> Back to Python Togo Website</a>
+            </div>
+        </form>
+    </div>
+
+<script src="{{ url_for('static', path='JS/login.js') }}"></script>
+{% endblock %}

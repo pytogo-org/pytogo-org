@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block title %} Gallery
+{% endblock %}
+
+{% block content %}
+
+<div class="gallery-container">
+    <div class="gallery-header">
+        <h2>Event Gallery</h2>
+        <button class="collapse-toggle">Collapse Gallery</button>
+    </div>
+
+    <div class="gallery-grid">
+
+        {% for image in galleries %}
+        <div class="gallery-item" data-height="{{ image.height }}">
+            <img src="{{ image.url }}" alt="{{ image.caption }}">
+            <div class="item-caption">{{ image.caption }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='JS/gallery.js') }}"></script>
+{% endblock %}

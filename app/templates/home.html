@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', path='css/home.css') }}">
+
+{% endblock %}
+
+
+{% block title %} Home
+
+
+{% endblock %}
+
+
+{% block content %}
+<div class="hero-slider">
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Empowering Python Developers</h1>
+            <p class="hero-subtitle">Join a thriving community of Python enthusiasts in Togo, learn, collaborate, and
+                grow your skills.</p> 
+            <div class="hero-buttons">
+                <a href="{{ url_for('mission_vision')}}" class="btn btn-primary">Get Involved</a>
+                <a href="{{ url_for('mission_vision')}}" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+    <!-- Slider Section -->
+    <section class="slider-container">
+        <div class="slider-wrapper">
+            <div class="slider">
+                {% for hero in heros %}
+                <div class="slide">
+                    <img src="{{ hero }}" alt="Python Togo Community">
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="slider-nav prev">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+            </svg>
+        </div>
+
+        <div class="slider-nav next">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18l6-6-6-6" />
+            </svg>
+        </div>
+    </section>
+</div>
+
+<section class="who-we-are" id="story">
+
+    <div class="who-we-are-container">
+        <div class="left-column">
+            <span class="tag">Our story</span>
+            <h2>Who we are</h2>
+        </div>
+        <div class="right-column">
+            <p>Python Togo is a dynamic community dedicated to fostering Python development in Togo. We provide
+                opportunities for networking, mentorship, and hands-on learning for developers of all levels.</p>
+
+        </div>
+    </div>
+
+
+    <img src="https://res.cloudinary.com/dvg7vky5o/image/upload/v1744070811/groupe_picture_accra_rudcom.jpg" alt="Python Togo Community"
+        class="community-image">
+</section>
+
+<!-- Parteners -->
+
+<section class="partners-section">
+    <div class="partners-title">Our Parteners</div>
+    <div class="partners-logos">
+        {% for partner in  partners %}
+        <img src="{{ partner.logo_url }}" alt="{{ partner.name }}" class="partner-logo  {{ partner.symbol }}">
+        {% endfor %}
+    </div>
+</section>
+
+
+
+<!-- Team Section -->
+
+<section class="team-section">
+    <div class="team-title-container">
+        <div class="tag">The winning Team</div>
+        <h1 class="team-title">The Spirits Behind Python Togo</h1>
+    </div>
+
+    <div class="team-grid">
+
+        {% for member in teams %}
+        <div class="team-member">
+            <div class="team-member-image">
+                <img src="{{  member.image }}" alt="Photo de profil">
+            </div>
+            <div class="team-member-info">
+                <div class="team-member-name">{{ member.name }}</div>
+                <div class="team-member-position">{{ member.role }}</div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+<!-- Get involve -->
+<section class="community-section-container" >
+    <div class="community-section">
+        <div class="community-content">
+            <div class="get-involved-tag" id="involve">Get Involved</div>
+            <h1 class="community-title">Whether you're a beginner or an expert, there's a place for you in Python Togo
+            </h1>
+            <button class="contact-button">Contact Us</button>
+        </div>
+
+        <div class="community-options">
+            <!-- <div class="vertical-line"></div> -->
+            <div class="option">
+                <div class="option-icon">
+                    <img src="{{ url_for('static', path='images/python.svg') }}" alt="Meetups Icon">
+                </div>
+                <div class="option-content">
+                    <h3>Attend Meetups</h3>
+                    <p>Connect with like-minded developers.</p>
+                </div>
+            </div>
+
+            <div class="option">
+                <div class="option-icon">
+                    <img src="{{ url_for('static', path='images/python.svg') }}" alt="Mentor Icon">
+                </div>
+                <div class="option-content">
+                    <h3>Become a Mentor</h3>
+                    <p>Share your knowledge and help others.</p>
+                </div>
+            </div>
+
+            <div class="option">
+                <div class="option-icon">
+                    <img src="{{ url_for('static', path='images/python.svg') }}" alt="Open Source Icon">
+                </div>
+                
+                <div class="option-content">
+                    <h3>Contribute to Open Source</h3>
+                    <p>Collaborate on projects.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- our program -->
+
+<section class="programs-section">
+    <div class="programs-tag" id="initiatives">Our Programs</div>
+    <h1 class="programs-title">We offer a variety of programs to help you grow your Python skills and connect with
+        others.</h1>
+
+    <div class="programs-grid">
+        <div class="program-card">
+            <div class="program-illustration">
+                <img src="{{ url_for('static', path='images/workshops_training.png') }}"
+                    alt="Workshops & Training Illustration">
+            </div>
+            <h3 class="program-title">Workshops & Training</h3>
+            <p class="program-description">Hands-on coding sessions and bootcamps.</p>
+        </div>
+
+        <div class="program-card">
+            <div class="program-illustration">
+                <img src="{{ url_for('static', path='images/hackathons.png') }}" alt="Hackathons Illustration">
+            </div>
+            <h3 class="program-title">Hackathons</h3>
+            <p class="program-description">Solve real-world problems with Python.</p>
+        </div>
+
+        <div class="program-card">
+            <div class="program-illustration">
+                <img src="{{ url_for('static', path='images/mentorship_programs.png') }}"
+                    alt="Mentorship Programs Illustration">
+            </div>
+            <h3 class="program-title">Mentorship Programs</h3>
+            <p class="program-description">Get guidance from industry experts.</p>
+        </div>
+    </div>
+</section>
+<!-- shop -->
+
+<section class="shop">
+    <div class="page-header">
+        <h1>Represent Python Togo</h1>
+        <p>Support our community by grabbing official Python Togo merchandise. Every purchase helps us grow!</p>
+    </div>
+
+    <div class="product-container">
+        <div class="product-image">
+            <div id="product-images"></div>
+            <div class="slider-dots" id="slider-dots"></div>
+        </div>
+
+        <div class="product-details">
+            <h2 class="product-title" id="product-title"></h2>
+            <p class="product-description" id="product-description"></p>
+            <div class="product-price">
+                <span id="product-price"></span>
+                <span class="original-price" id="original-price"></span>
+            </div>
+            <button class="buy-button" id="buy-button">Buy Swag</button>
+        </div>
+    </div>
+
+    <div class="navigation-arrows">
+        <button class="navigation-arrow prev">←</button>
+        <button class="navigation-arrow next">→</button>
+        
+    </div>
+</section>
+
+
+<script src="{{ url_for('static', path='JS/home.js') }}"></script>
+<script src="{{ url_for('static', path='JS/shop.js') }}"></script>
+
+{% endblock %}

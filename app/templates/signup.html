@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %} Sign Up
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/signup.css') }}">
+{% endblock %}
+
+
+{% block content %}
+
+<main class="main-content">
+    <h1 class="page-title">Join Python Togo Community</h1>
+
+    <div class="signup-container">
+        <div class="signup-form">
+            <div class="signup-header">
+                <h2>Create an Account</h2>
+                <p>Join our Python community in Togo and grow your skills</p>
+            </div>
+
+            <div class="profile-upload">
+                <div class="profile-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <button class="upload-btn">
+                    <i class="fas fa-camera"></i> Upload Photo
+                </button>
+            </div>
+
+            <form id="registration-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name *</label>
+                        <input type="text" id="first-name" class="form-control" required>
+                        <div class="error-message">Please enter your first name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last-name">Last Name *</label>
+                        <input type="text" id="last-name" class="form-control" required>
+                        <div class="error-message">Please enter your last name</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" class="form-control" required>
+                    <div class="error-message">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control">
+                </div>
+
+                <label>Select Account Type *</label>
+                <div class="role-selection">
+                    <div class="role-card" data-role="member">
+                        <i class="fas fa-user"></i>
+                        <h3>Member</h3>
+                        <p>Join events and access resources</p>
+                    </div>
+
+                    <div class="role-card" data-role="admin">
+                        <i class="fas fa-user-cog"></i>
+                        <h3>Admin</h3>
+                        <p>Create and manage events</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <div class="password-field">
+                        <input type="password" id="password" class="form-control" required>
+                        <button type="button" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="error-message">Password must be at least 8 characters</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password *</label>
+                    <div class="password-field">
+                        <input type="password" id="confirm-password" class="form-control" required>
+                        <button type="button" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="error-message">Passwords do not match</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Short Bio</label>
+                    <textarea id="bio" class="form-control" rows="3"
+                        placeholder="Tell us about yourself and your experience with Python"></textarea>
+                </div>
+
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn">Create Account</button>
+
+                <div class="form-links">
+                    Already have an account?  <a href="{{ url_for('login')}}"> Log in</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <h2>Registration Successful!</h2>
+            <p>Your account has been created successfully. Please check your email to verify your account.</p>
+            <a href="{{ url_for('login')}}" class="btn">Go to Login</a>
+        </div>
+    </div>
+</main>
+
+
+<script src="{{ url_for('static', path='JS/signup.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Represent Python Togo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+        }
+
+        .product-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-image img.hidden {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .original-price {
+            color: #888;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background-color: #4CAF50;
+        }
+
+        .navigation-arrows {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .navigation-arrow {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .navigation-arrow:hover {
+            color: #4CAF50;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-header">
+        <h1>Represent Python Togo</h1>
+        <p>Support our community by grabbing official Python Togo merchandise. Every purchase helps us grow!</p>
+    </div>
+
+    <div class="product-container">
+        <div class="product-image">
+            <div id="product-images"></div>
+            <div class="slider-dots" id="slider-dots"></div>
+        </div>
+
+        <div class="product-details">
+            <h2 class="product-title" id="product-title"></h2>
+            <p class="product-description" id="product-description"></p>
+            <div class="product-price">
+                <span id="product-price"></span>
+                <span class="original-price" id="original-price"></span>
+            </div>
+            <button class="buy-button" id="buy-button">Buy Swag</button>
+        </div>
+    </div>
+
+    <div class="navigation-arrows">
+        <button class="navigation-arrow prev">←</button>
+        <button class="navigation-arrow next">→</button>
+    </div>
+
+    <script>
+        const products = [
+            {
+                name: "T-Shirt Python Togo",
+                description: "Représentez fièrement la communauté Python Togo avec notre t-shirt officiel. Fabriqué en coton de haute qualité.",
+                price: 3500,
+                originalPrice: 5000,
+                images: [
+                    "/api/placeholder/500/600?text=T-Shirt1",
+                    "/api/placeholder/500/600?text=T-Shirt2",
+                    "/api/placeholder/500/600?text=T-Shirt3"
+                ]
+            },
+            {
+                name: "Hoodie Python Togo",
+                description: "Restez au chaud avec notre hoodie Python Togo. Parfait pour les soirées de code et les meetups.",
+                price: 7500,
+                originalPrice: 9000,
+                images: [
+                    "/api/placeholder/500/600?text=Hoodie1",
+                    "/api/placeholder/500/600?text=Hoodie2"
+                ]
+            },
+            {
+                name: "Casquette Python Togo",
+                description: "Complétez votre look tech avec notre casquette exclusive Python Togo. Réglable et confortable.",
+                price: 2500,
+                originalPrice: 3500,
+                images: [
+                    "/api/placeholder/500/600?text=Casquette1",
+                    "/api/placeholder/500/600?text=Casquette2"
+                ]
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const productImages = document.getElementById('product-images');
+            const sliderDots = document.getElementById('slider-dots');
+            const productTitle = document.getElementById('product-title');
+            const productDescription = document.getElementById('product-description');
+            const productPrice = document.getElementById('product-price');
+            const originalPrice = document.getElementById('original-price');
+            const buyButton = document.getElementById('buy-button');
+            const prevButton = document.querySelector('.navigation-arrow.prev');
+            const nextButton = document.querySelector('.navigation-arrow.next');
+
+            let currentProductIndex = 0;
+            let currentImageIndex = 0;
+
+            function renderProduct(productIndex) {
+                const product = products[productIndex];
+
+                // Clear previous images and dots
+                productImages.innerHTML = '';
+                sliderDots.innerHTML = '';
+
+                // Render images
+                product.images.forEach((src, index) => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = `${product.name} - Image ${index + 1}`;
+                    img.classList.add(index === 0 ? 'active' : 'hidden');
+                    productImages.appendChild(img);
+
+                    // Create dot
+                    const dot = document.createElement('span');
+                    dot.classList.add('slider-dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.dataset.index = index;
+                    dot.addEventListener('click', () => changeImage(index));
+                    sliderDots.appendChild(dot);
+                });
+
+                // Update product details
+                productTitle.textContent = product.name;
+                productDescription.textContent = product.description;
+                productPrice.textContent = `${product.price} CFA`;
+                originalPrice.textContent = `${product.originalPrice} CFA`;
+            }
+
+            function changeProduct(direction) {
+                currentProductIndex = (currentProductIndex + direction + products.length) % products.length;
+                currentImageIndex = 0;
+                renderProduct(currentProductIndex);
+            }
+
+            function changeImage(index) {
+                const images = productImages.querySelectorAll('img');
+                const dots = sliderDots.querySelectorAll('.slider-dot');
+
+                images.forEach(img => {
+                    img.classList.remove('active');
+                    img.classList.add('hidden');
+                });
+                dots.forEach(dot => dot.classList.remove('active'));
+
+                images[index].classList.remove('hidden');
+                images[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentImageIndex = index;
+            }
+
+            // Initial render
+            renderProduct(0);
+
+            // Navigation buttons
+            prevButton.addEventListener('click', () => changeProduct(-1));
+            nextButton.addEventListener('click', () => changeProduct(1));
+
+            // Buy button
+            buyButton.addEventListener('click', () => {
+                alert(`Merci de soutenir Python Togo! Vous avez choisi: ${products[currentProductIndex].name}`);
+            });
+
+            // Auto-slide images
+            setInterval(() => {
+                const product = products[currentProductIndex];
+                currentImageIndex = (currentImageIndex + 1) % product.images.length;
+                changeImage(currentImageIndex);
+            }, 5000);
+        });
+    </script>
+</body>
+
+</html>

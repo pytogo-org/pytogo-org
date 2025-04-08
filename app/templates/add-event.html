@@ -1,0 +1,135 @@
+{% extends "base_dash.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/add-event.css') }}">
+{% endblock %}
+
+{% block title %} Add event
+{% endblock %}
+
+
+{% block main %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('admin')}}">Dashboard</a>
+    <span>></span>
+    <a href="#">Events</a>
+    <span>></span>
+    <span>Add New Event</span>
+</div>
+
+<h1 class="page-title">
+    Add New Event
+    <a href="#" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Events</a>
+</h1>
+
+<div class="form-container">
+    <h2 class="form-title">Event Information</h2>
+
+    <form>
+        <div class="form-section">
+            <h3 class="form-section-title">Basic Information</h3>
+
+            <div class="form-group">
+                <label for="event-title">Event Title *</label>
+                <input type="text" id="event-title" class="form-control" placeholder="Enter event title" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="event-date">Event Date *</label>
+                    <input type="date" id="event-date" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-time">Event Time *</label>
+                    <input type="time" id="event-time" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="event-location">Location *</label>
+                <input type="text" id="event-location" class="form-control" placeholder="Enter event location" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="event-type">Event Type</label>
+                    <select id="event-type" class="form-control">
+                        <option value="">Select event type</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="meetup">Meetup</option>
+                        <option value="hackathon">Hackathon</option>
+                        <option value="conference">Conference</option>
+                        <option value="training">Training</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="max-attendees">Maximum Attendees</label>
+                    <input type="number" id="max-attendees" class="form-control"
+                        placeholder="Enter maximum number of attendees">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3 class="form-section-title">Description & Details</h3>
+
+            <div class="form-group">
+                <label for="event-description">Event Description *</label>
+                <textarea id="event-description" class="form-control"
+                    placeholder="Enter detailed description of the event" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="prerequisites">Prerequisites</label>
+                <textarea id="prerequisites" class="form-control"
+                    placeholder="Enter any prerequisites for attendees"></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3 class="form-section-title">Images & Media</h3>
+
+            <div class="form-group">
+                <label>Event Banner Image</label>
+                <div class="file-upload">
+                    <div class="file-upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag and drop or click to upload</p>
+                        <small>Recommended size: 1200 x 600 pixels</small>
+                    </div>
+                    <input type="file" accept="image/*">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3 class="form-section-title">Additional Options</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="registration-required">
+                    <label for="registration-required">Registration Required</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="featured-event">
+                    <label for="featured-event">Feature on Homepage</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="send-notification">
+                    <label for="send-notification">Send Notification to Members</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn btn-outline">Cancel</button>
+            <button type="submit" class="btn">Save Event</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
